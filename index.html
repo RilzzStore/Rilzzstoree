@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RilzzStore - Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+body{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle at top,#1b2735,#090a0f),
+linear-gradient(120deg,#00ffee22,#7f00ff22);
+color:#fff;
+}
+
+.card{
+width:95%;
+max-width:480px;
+padding:22px;
+border-radius:22px;
+background:rgba(15,20,30,.78);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 40px #00ffee33,0 0 80px #7f00ff22;
+animation:fadeUp .7s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:none}
+}
+
+h1{
+text-align:center;
+font-weight:700;
+background:linear-gradient(90deg,#00ffee,#7f00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+.subtitle{
+text-align:center;
+font-size:12px;
+opacity:.75;
+margin:6px 0 16px;
+}
+
+/* PRODUCT */
+.product{
+display:flex;
+align-items:center;
+gap:14px;
+padding:14px;
+margin-bottom:12px;
+border-radius:16px;
+background:linear-gradient(135deg,#0b111a,#06080d);
+border:1px solid rgba(255,255,255,.05);
+cursor:pointer;
+transition:.35s;
+}
+.product:hover{
+transform:translateY(-3px);
+box-shadow:0 0 25px #00ffee33;
+}
+.product.active{
+border-color:#00ffee;
+box-shadow:0 0 30px #00ffee66;
+}
+.product img{
+width:68px;height:68px;
+border-radius:14px;
+object-fit:cover;
+}
+.product h3{font-size:14px;font-weight:600}
+.price{font-size:13px;color:#00ffb3;font-weight:600}
+
+/* PAYMENT */
+.payment{
+margin:18px 0;
+padding:16px;
+border-radius:18px;
+background:rgba(0,0,0,.35);
+border:1px solid rgba(255,255,255,.06);
+text-align:center;
+}
+.payment h4{
+font-size:13px;
+margin-bottom:12px;
+color:#00ffee;
+}
+.pay-icons{
+display:flex;
+justify-content:center;
+gap:24px;
+margin-bottom:10px;
+}
+.pay-icons img{
+width:70px;
+filter:drop-shadow(0 0 10px #00ffee55);
+}
+.pay-number{
+font-size:13px;
+line-height:1.7;
+opacity:.9;
+}
+
+/* FORM */
+input,button{
+width:100%;
+border:none;
+outline:none;
+border-radius:14px;
+padding:14px;
+margin-top:10px;
+}
+input{
+background:#0b111a;
+color:#fff;
+border:1px solid rgba(255,255,255,.06);
+}
+button{
+background:linear-gradient(90deg,#00ffee,#7f00ff);
+color:#000;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+button:hover{
+filter:brightness(1.1);
+transform:translateY(-1px);
+}
+
+/* LOADING */
+.loading{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(10px);
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:999;
+}
+.spinner{
+width:64px;height:64px;
+border-radius:50%;
+border:3px solid #ffffff22;
+border-top:3px solid #00ffee;
+animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{margin-top:14px;color:#00ffee}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>RilzzStore - VIP</h1>
+<div class="subtitle">Order Aman • Manual • Terpercaya</div>
+
+<div class="product active" onclick="pilih(this,'File FF 80% HS',20000)">
+<img src="produk1.jpg">
+<div>
+<h3>File FF 80% HS</h3>
+<div class="price">IDR: Rp20.000</div>
+</div>
+</div>
+
+<div class="product" onclick="pilih(this,'Aim FF 90% HS',30000)">
+<img src="produk2.jpg">
+<div>
+<h3> Aim FF 90% HS</h3>
+<div class="price">IDR: Rp30.000</div>
+</div>
+</div>
+
+<div class="product" onclick="pilih(this,'MOD MENU 100% HS',50000)">
+<img src="produk3.jpg">
+<div>
+<h3>MODS MENU 100% HS + BYPASS</h3>
+<div class="price">IDR: Rp50.000</div>
+</div>
+</div>
+
+<div class="payment">
+<h4>Metode Pembayaran</h4>
+
+<div class="pay-icons">
+<img src="dana.png" alt="DANA">
+<img src="gopay.png" alt="GOPAY">
+</div>
+
+<div class="pay-number">
+<b>DANA :</b> 083125913760<br>
+<b>GoPay :</b> 083125913760<br>
+<span style="font-size:12px;opacity:.75">
+a.n. FAREL</span>
+</div>
+</div>
+
+<input id="nama" placeholder="Nama Pembeli">
+<button onclick="order()">KIRIM SS TF DAN AMBIL FILE</button>
+</div>
+
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<p>Menghubungkan ke admin...</p>
+</div>
+
+<script>
+let produk="File FF 80% HS";
+let harga=20000;
+
+function pilih(el,n,h){
+document.querySelectorAll('.product').forEach(p=>p.classList.remove('active'));
+el.classList.add('active');
+produk=n; harga=h;
+}
+
+function order(){
+let nama=document.getElementById("nama").value;
+if(!nama) return alert("Masukkan nama");
+
+document.getElementById("loading").style.display="flex";
+
+let admin="6285126647996"; // GANTI NOMOR WA ADMIN
+
+setTimeout(()=>{
+let msg=`Halo Admin,
+Saya ingin order.
+
+Nama: ${nama}
+Produk: ${produk}
+Harga: Rp${harga}
+
+Saya akan transfer via DANA / GoPay dan kirim bukti.`;
+location.href="https://wa.me/"+admin+"?text="+encodeURIComponent(msg);
+},1500);
+}
+</script>
+
+</body>
+</html>
