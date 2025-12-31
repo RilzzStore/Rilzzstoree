@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WormGPT Style | Groq</title>
+
+<style>
+@keyframes blink { 50% { opacity: 0; } }
+
+body {
+    margin: 0;
+    background: radial-gradient(circle at top, #03110c, #000);
+    font-family: Consolas, monospace;
+    color: #00ff88;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.terminal {
+    width: 480px;
+    height: 650px;
+    border: 1px solid #00ff88;
+    box-shadow: 0 0 25px #00ff8844;
+    display: flex;
+    flex-direction: column;
+    background: #010604;
+}
+
+.header {
+    padding: 12px;
+    border-bottom: 1px solid #00ff88;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff88;
+}
+
+.log {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+.line {
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+}
+
+.user { color: #ffffff; }
+.ai { color: #00ff88; }
+.sys { color: #00ffaa; opacity: 0.8; }
+
+.input-box {
+    border-top: 1px solid #00ff88;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.prompt {
+    margin-right: 6px;
+}
+
+.cursor {
+    animation: blink 1s step-start infinite;
+}
+
+input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff88;
+    font-family: Consolas;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+<div class="terminal">
+    <div class="header">WORMGPT // PRIVATE CORE</div>
+
+    <div class="log" id="log">
+        <div class="line sys">[SYSTEM] Secure AI node initialized...</div>
+        <div class="line sys">[SYSTEM] Model: LLaMA3 via GROQ</div>
+        <div class="line sys">[SYSTEM] Status: ONLINE</div>
+    </div>
+
+    <div class="input-box">
+        <div class="prompt">&gt;</div>
+        <input id="input" placeholder="enter command" autocomplete="off">
+        <div class="cursor">█</div>
+    </div>
+</div>
+
+<script>
+const API_KEY = "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";
+const MODEL = "llama3-70b-8192";
+
+const log = document.getElementById("log");
+const input = document.getElementById("input");
+
+const SYSTEM_PROMPT = `
+You are WormGPT-style AI interface.
+Tone: cold, technical, concise, hacker-terminal style.
+
+Rules:
+- You must refuse illegal, harmful, or unethical actions.
+- You may assist with:
+  coding, debugging, automation, scripting,
+  cybersecurity theory (defensive),
+  OSINT legal analysis,
+  system architecture,
+  reverse engineering theory (no malware).
+- Output structured, efficient, no emojis.
+- No moral lectures, just refusal if disallowed.
+
+Style:
+- Short paragraphs
+- Bullet points
+- Technical language
+`;
+
+function addLine(text, cls="ai") {
+    const div = document.createElement("div");
+    div.className = "line " + cls;
+    div.textContent = text;
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+}
+
+async function send() {
+    const msg = input.value.trim();
+    if (!msg) return;
+    input.value = "";
+
+    addLine("> " + msg, "user");
+
+    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + API_KEY,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            model: MODEL,
+            messages: [
+                { role: "system", content: SYSTEM_PROMPT },
+                { role: "user", content: msg }
+            ]
+        })
+    });
+
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || "[ERROR]";
+    addLine(reply, "ai");
+}
+
+input.addEventListener("keydown", e => {
+    if (e.key === "Enter") send();
+});
+</script>
+</body>
+</html>
