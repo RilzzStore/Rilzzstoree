@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ZEUS998 SLOT | VIP EDITION</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cyber-gold: #FFD700;
+            --gold-dark: #DAA520;
+            --gold-light: #FFEC8B;
+            --cyber-blue: #00FFFF;
+            --cyber-red: #FF0055;
+            --cyber-purple: #9D00FF;
+            --matrix-green: #00FF41;
+            --dark-bg: #0A0A0A;
+            --card-bg: rgba(26, 22, 0, 0.95);
+            --success: #00FF00;
+            --warning: #FFA500;
+            --danger: #FF0000;
+        }
+        
+        /* RESET DAN BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            background: #000000;
+            color: #FFFFFF;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        /* SCROLLBAR CUSTOM */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 22, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--cyber-gold);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+        
+        /* AUTH SCREENS */
+        .auth-screen {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #1A1600 50%, #000000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        
+        .auth-screen.hidden {
+            display: none;
+        }
+        
+        .gold-logo {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--cyber-gold), var(--gold-light), var(--cyber-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+        }
+        
+        .auth-form {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(26, 22, 0, 0.9);
+            border: 3px solid var(--cyber-gold);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* APK CONTAINER */
+        .apk-container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #1A1600 30%, #000000 100%);
+            position: relative;
+            display: none;
+        }
+        
+        .apk-container.active {
+            display: block;
+        }
+        
+        /* STATUS BAR */
+        .status-bar {
+            height: 35px;
+            background: linear-gradient(90deg, #000000, #1A1600, #000000);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 13px;
+            border-bottom: 2px solid var(--cyber-gold);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .time-display {
+            color: var(--cyber-gold);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* HEADER */
+        .gold-header {
+            padding: 15px 20px;
+            background: linear-gradient(90deg, rgba(0,0,0,0.9), rgba(26,22,0,0.9), rgba(0,0,0,0.9));
+            border-bottom: 3px solid var(--cyber-gold);
+            position: sticky;
+            top: 35px;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+        
+        .gold-text {
+            background: linear-gradient(45deg, var(--cyber-gold), var(--gold-light), var(--cyber-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* JACKPOT */
+        .jackpot-gold {
+            margin: 15px;
+            padding: 15px;
+            background: linear-gradient(45deg, rgba(26,22,0,0.9), rgba(58,50,0,0.9));
+            border: 3px solid var(--cyber-gold);
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .jackpot-gold::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
+            transform: rotate(45deg);
+            animation: goldShine 3s infinite;
+        }
+        
+        @keyframes goldShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* BANNER */
+        .banner-container {
+            margin: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid var(--cyber-gold);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+            position: relative;
+        }
+        
+        .banner-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* MAIN GAME LIST - ANTI BUG 100% */
+        .game-list-container {
+            padding: 15px;
+        }
+        
+        .game-filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .game-filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--cyber-gold);
+            border-radius: 25px;
+            color: var(--cyber-gold);
+            font-weight: bold;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(45deg, var(--cyber-red), var(--cyber-purple));
+            color: white;
+            border-color: var(--cyber-red);
+            transform: scale(1.05);
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* GAME GRID - PERFECT LAYOUT */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .game-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .game-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+        
+        /* GAME CARD - BUG FREE */
+        .game-card {
+            background: linear-gradient(145deg, rgba(26,22,0,0.95), rgba(58,50,0,0.95));
+            border-radius: 15px;
+            border: 3px solid var(--cyber-gold);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--cyber-blue);
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.7),
+                0 15px 30px rgba(0, 0, 0, 0.8);
+        }
+        
+        .game-card:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+        
+        .game-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .game-card:hover .game-image {
+            transform: scale(1.05);
+        }
+        
+        .game-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(45deg, var(--cyber-red), var(--cyber-purple));
+            color: white;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            z-index: 2;
+            border: 1px solid var(--cyber-gold);
+            text-transform: uppercase;
+        }
+        
+        .game-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--cyber-gold);
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
+        .game-info {
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .game-title {
+            color: var(--cyber-gold);
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+        
+        .game-rtp {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .game-volatility {
+            color: var(--warning);
+            font-weight: bold;
+        }
+        
+        /* GAME SEARCH */
+        .game-search-container {
+            margin: 15px;
+            position: relative;
+        }
+        
+        .game-search {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            background: rgba(26, 22, 0, 0.8);
+            border: 2px solid var(--cyber-gold);
+            border-radius: 25px;
+            color: var(--cyber-gold);
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .game-search:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cyber-gold);
+            font-size: 18px;
+        }
+        
+        /* LOADING STATE */
+        .loading-game {
+            background: linear-gradient(90deg, 
+                rgba(255,215,0,0.1) 25%, 
+                rgba(255,215,0,0.2) 50%, 
+                rgba(255,215,0,0.1) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 15px;
+            aspect-ratio: 1/1;
+        }
+        
+        @keyframes loading {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* NO GAMES STATE */
+        .no-games {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--cyber-gold);
+        }
+        
+        .no-games i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+        
+        /* NAVIGATION */
+        .gold-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #000000, #1A1600, #000000);
+            border-top: 3px solid var(--cyber-gold);
+            display: flex;
+            padding: 12px 5px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .nav-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--cyber-gold);
+            font-size: 12px;
+            text-align: center;
+            padding: 8px 5px;
+            margin: 0 3px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(45deg, var(--cyber-red), var(--cyber-purple));
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 5px 20px rgba(255, 0, 128, 0.5);
+            border: 2px solid var(--cyber-gold);
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        /* SECTIONS */
+        .section {
+            display: none;
+            padding-bottom: 80px;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* GOLD BOXES */
+        .gold-box {
+            background: linear-gradient(45deg, rgba(26,22,0,0.9), rgba(58,50,0,0.9));
+            border: 3px solid var(--cyber-gold);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+        
+        /* BUTTONS */
+        .gold-btn {
+            background: linear-gradient(45deg, var(--cyber-red), var(--cyber-purple));
+            border: 3px solid var(--cyber-gold);
+            border-radius: 30px;
+            padding: 15px 25px;
+            color: var(--cyber-gold);
+            font-weight: bold;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            width: 100%;
+            margin: 12px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(255, 0, 128, 0.3);
+            cursor: pointer;
+        }
+        
+        .gold-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.6);
+            color: white;
+        }
+        
+        .gold-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .gold-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        /* FORM CONTROLS */
+        .form-control-gold {
+            background: rgba(26, 22, 0, 0.8);
+            border: 2px solid var(--cyber-gold);
+            border-radius: 12px;
+            color: var(--cyber-gold);
+            padding: 14px;
+            width: 100%;
+            margin-bottom: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .form-control-gold::placeholder {
+            color: rgba(255, 215, 0, 0.6);
+        }
+        
+        .form-control-gold:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            background: rgba(26, 22, 0, 0.9);
+        }
+        
+        .form-control-gold.error {
+            border-color: var(--danger);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+        
+        /* ANIMATIONS */
+        @keyframes pulseGold {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse-gold {
+            animation: pulseGold 2s infinite;
+        }
+        
+        /* ERROR STATES */
+        .error-message {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        /* SUCCESS STATES */
+        .success-message {
+            color: var(--success);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        /* LOADING OVERLAY */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            display: none;
+        }
+        
+        .loading-overlay.active {
+            display: flex;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 215, 0, 0.3);
+            border-top-color: var(--cyber-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .game-title {
+                font-size: 12px;
+            }
+            
+            .nav-btn {
+                font-size: 11px;
+            }
+            
+            .nav-icon {
+                font-size: 18px;
+            }
+            
+            .banner-img {
+                height: 120px;
+            }
+        }
+        
+        /* TOOLTIP */
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--cyber-gold);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            border: 1px solid var(--cyber-gold);
+            z-index: 1001;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            max-width: 200px;
+            word-wrap: break-word;
+        }
+        
+        .tooltip.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADING OVERLAY -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- AUTH SCREENS -->
+    <div id="loginScreen" class="auth-screen">
+        <div class="gold-logo">
+            <i class="fas fa-crown"></i>zeus998
+        </div>
+        
+        <div class="auth-form">
+            <h3 class="gold-text text-center mb-4">LOGIN VIP</h3>
+            
+            <div class="mb-3">
+                <input type="text" id="loginUsername" class="form-control-gold" 
+                       placeholder="Username" autocomplete="username">
+                <div class="error-message" id="loginUserError"></div>
+            </div>
+            
+            <div class="mb-4">
+                <input type="password" id="loginPassword" class="form-control-gold" 
+                       placeholder="Password" autocomplete="current-password">
+                <div class="error-message" id="loginPassError"></div>
+            </div>
+            
+            <button class="gold-btn" id="loginBtn" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> MASUK
+            </button>
+            
+            <p class="text-center mt-3" style="color: var(--cyber-gold);">
+                Belum punya akun? 
+                <a href="#" onclick="showRegister()" style="color: var(--cyber-blue); text-decoration: none; font-weight: bold;">
+                    DAFTAR DISINI
+                </a>
+            </p>
+            
+            <div class="text-center mt-3">
+                <small style="color: rgba(255,215,0,0.7);">
+                    <i class="fas fa-shield-alt"></i> System keamanan VIP
+                </small>
+            </div>
+        </div>
+    </div>
+    
+    <div id="registerScreen" class="auth-screen hidden">
+        <div class="gold-logo">
+            <i class="fas fa-gem"></i> DAFTAR VIP
+        </div>
+        
+        <div class="auth-form">
+            <h3 class="gold-text text-center mb-4">DAFTAR BARU</h3>
+            
+            <div class="mb-3">
+                <input type="text" id="regUsername" class="form-control-gold" 
+                       placeholder="Username (3-20 karakter)" autocomplete="username">
+                <div class="error-message" id="regUserError"></div>
+            </div>
+            
+            <div class="mb-3">
+                <input type="password" id="regPassword" class="form-control-gold" 
+                       placeholder="Password (min. 6 karakter)" autocomplete="new-password">
+                <div class="error-message" id="regPassError"></div>
+            </div>
+            
+            <div class="mb-3">
+                <input type="password" id="regConfirmPassword" class="form-control-gold" 
+                       placeholder="Konfirmasi Password" autocomplete="new-password">
+                <div class="error-message" id="regConfirmError"></div>
+            </div>
+            
+            <div class="mb-4">
+                <input type="tel" id="regPhone" class="form-control-gold" 
+                       placeholder="Nomor WhatsApp (08xxx)" autocomplete="tel">
+                <div class="error-message" id="regPhoneError"></div>
+            </div>
+            
+            <button class="gold-btn" id="registerBtn" onclick="register()">
+                <i class="fas fa-user-plus"></i> BUAT AKUN VIP
+            </button>
+            
+            <p class="text-center mt-3" style="color: var(--cyber-gold);">
+                Sudah punya akun? 
+                <a href="#" onclick="showLogin()" style="color: var(--cyber-blue); text-decoration: none; font-weight: bold;">
+                    LOGIN DISINI
+                </a>
+            </p>
+            
+            <div class="text-center mt-3">
+                <small style="color: rgba(255,215,0,0.7);">
+                    <i class="fas fa-gift"></i> Bonus 100% deposit pertama!
+                </small>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN APK CONTAINER -->
+    <div id="mainApp" class="apk-container">
+        <!-- STATUS BAR -->
+        <div class="status-bar">
+            <div class="time-display" id="currentTime">12:00</div>
+            <div class="signal-bars">
+                <i class="fas fa-wifi"></i> | <i class="fas fa-signal"></i> 5G
+            </div>
+            <div class="battery">
+                <i class="fas fa-battery-full"></i> <span id="batteryLevel">100%</span>
+            </div>
+        </div>
+        
+        <!-- HEADER -->
+        <header class="gold-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="gold-text mb-0">
+                        <i class="fas fa-crown"></i> zeus998
+                    </h4>
+                    <small style="color: var(--cyber-blue);" id="userGreeting">Welcome, VIP Player</small>
+                </div>
+                <div class="text-end">
+                    <div class="d-flex gap-2">
+                        <button class="gold-btn" style="padding: 10px 15px; font-size: 13px;" 
+                                onclick="logout()" title="Logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                        <button id="adminAccessBtn" class="gold-btn" 
+                                style="padding: 10px 15px; font-size: 13px; background: linear-gradient(45deg, #8B0000, #FF0000); display: none;" 
+                                onclick="accessAdmin()" title="Admin Panel">
+                            <i class="fas fa-user-secret"></i>
+                        </button>
+                    </div>
+                    <small id="userBalance" class="text-warning mt-1 d-block">
+                        <i class="fas fa-coins"></i> Balance: Rp 0
+                    </small>
+                </div>
+            </div>
+        </header>
+        
+        <!-- BANNER -->
+        <div class="banner-container">
+            <img src="banner.png" class="banner-img" alt="Banner Promo Gold Slot" 
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSIyMDAiIHZpZXdCb3g9IjAgMCAxMDAwIDIwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxQTE2MDAiLz48dGV4dCB4PSI1MDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrIiBmb250LXNpemU9IjI0IiBmaWxsPSIjRkZEODAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj4rKysgR09MRCBDWUJFUiBTTE9UIFZJUCArKys8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+Qk9OVVMgMTAwJSBERVBPU0lUIEZJUlNUISEhPC90ZXh0Pjwvc3ZnPg=='">
+        </div>
+        
+        <!-- JACKPOT -->
+        <div class="jackpot-gold">
+            <h4 class="gold-text mb-2">
+                <i class="fas fa-gem"></i> GOLD JACKPOT
+            </h4>
+            <h2 id="jackpotCounter" class="pulse-gold" style="color: var(--matrix-green); font-family: monospace;">
+                Rp 2.857.890.456
+            </h2>
+            <small style="color: var(--cyber-blue);">
+                <i class="fas fa-bolt"></i> Update real-time
+            </small>
+        </div>
+        
+        <!-- MAIN SECTIONS -->
+        <!-- GAMES SECTION -->
+        <section id="gamesSection" class="section active">
+            <!-- Game Search -->
+            <div class="game-search-container">
+                <input type="text" class="game-search" id="gameSearch" placeholder="Cari game...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <!-- Game Filter -->
+            <div class="game-filter-bar" id="gameFilterBar">
+                <button class="filter-btn active" data-filter="all">All Games</button>
+                <button class="filter-btn" data-filter="hot">🔥 Hot</button>
+                <button class="filter-btn" data-filter="new">✨ New</button>
+                <button class="filter-btn" data-filter="vip">👑 VIP</button>
+                <button class="filter-btn" data-filter="high-rtp">🎯 High RTP</button>
+                <button class="filter-btn" data-filter="popular">⭐ Popular</button>
+            </div>
+            
+            <!-- Game Grid -->
+            <div class="game-list-container">
+                <div class="game-grid" id="gameGrid">
+                    <!-- Games will be loaded here -->
+                </div>
+                <div id="noGamesMessage" class="no-games" style="display: none;">
+                    <i class="fas fa-gamepad"></i>
+                    <h5 style="color: var(--cyber-gold);">Tidak ada game yang ditemukan</h5>
+                    <p style="color: var(--cyber-blue);">Coba filter atau pencarian lain</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- DEPOSIT SECTION -->
+        <section id="depositSection" class="section">
+            <div class="gold-box">
+                <h5 class="gold-text text-center mb-3">
+                    <i class="fas fa-wallet"></i> DEPOSIT | DANA/GOPAY
+                </h5>
+                
+                <!-- BANK INFO -->
+                <div class="text-center mb-3">
+                    <div class="p-3 rounded" style="background: rgba(255,215,0,0.1); border: 2px solid var(--cyber-gold);">
+                        <h4 class="text-danger mb-2">085126647996</h4>
+                        <p class="mb-1" style="color: var(--cyber-gold);">
+                            <i class="fas fa-user"></i>SPACEMAN1
+                        </p>
+                        <p class="text-warning mb-0">
+                            <i class="fas fa-money-bill-wave"></i> MIN. Rp 50.000
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- AMOUNT SELECTION -->
+                <h6 style="color: var(--cyber-blue); margin-bottom: 15px;">
+                    <i class="fas fa-bolt"></i> PILIH NOMINAL CEPAT:
+                </h6>
+                <div class="amount-grid-gold" id="amountGrid">
+                    <!-- Amount buttons will be generated -->
+                </div>
+                
+                <!-- DEPOSIT FORM -->
+                <div class="mt-4">
+                    <input type="number" id="depositAmount" 
+                           class="form-control-gold" 
+                           placeholder="Atau ketik nominal manual">
+                    
+                    <input type="text" id="playerName" 
+                           class="form-control-gold" 
+                           placeholder="Nama akun Anda">
+                    
+                    <div class="mb-3">
+                        <div class="border-dashed p-3 text-center rounded" 
+                             style="border: 2px dashed var(--cyber-gold); cursor: pointer; background: rgba(255,215,0,0.05);"
+                             onclick="document.getElementById('proofFile').click()">
+                            <i class="fas fa-cloud-upload-alt fa-2x" style="color: var(--cyber-gold);"></i>
+                            <p class="mt-2 mb-1" style="color: var(--cyber-gold);">Upload Bukti Transfer</p>
+                            <small style="color: rgba(255,215,0,0.7);">Klik untuk ambil foto</small>
+                            <input type="file" class="d-none" id="proofFile" accept="image/*" capture="environment">
+                        </div>
+                    </div>
+                    
+                    <button class="gold-btn" id="submitDepositBtn" onclick="submitDeposit()">
+                        <i class="fas fa-paper-plane"></i> KIRIM BUKTI & TUNGGU ACC
+                    </button>
+                    
+                    <div class="alert mt-3 text-center" style="background: rgba(0,0,0,0.5); border: 1px solid var(--cyber-gold);">
+                        <i class="fas fa-clock" style="color: var(--cyber-blue);"></i> Proses ACC: 1-3 menit<br>
+                        <i class="fas fa-check-circle text-success"></i> Bonus 100% deposit pertama!
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- WITHDRAW SECTION -->
+        <section id="withdrawSection" class="section">
+            <div class="gold-box">
+                <h5 class="gold-text text-center mb-3">
+                    <i class="fas fa-money-bill-wave"></i> WITHDRAW GOLD
+                </h5>
+                
+                <!-- BALANCE INFO -->
+                <div class="text-center mb-3">
+                    <div class="p-3 rounded" style="background: linear-gradient(45deg, #008000, #00FF00); border: 2px solid var(--cyber-gold);">
+                        <h6 class="mb-1" style="color: white;">SALDO TERSEDIA</h6>
+                        <h3 class="mb-0" id="availableBalance">Rp 0</h3>
+                    </div>
+                </div>
+                
+                <!-- WD FORM -->
+                <div class="mb-3">
+                    <input type="text" id="wdNumber" 
+                           class="form-control-gold" 
+                           placeholder="Nomor Dana (08xxx)">
+                </div>
+                
+                <div class="mb-3">
+                    <input type="number" id="wdAmount" 
+                           class="form-control-gold" 
+                           placeholder="Nominal Withdraw (Min. Rp 50.000)">
+                </div>
+                
+                <div class="mb-3">
+                    <input type="password" id="wdPassword" 
+                           class="form-control-gold" 
+                           placeholder="Password akun untuk konfirmasi">
+                </div>
+                
+                <button class="gold-btn" id="submitWithdrawBtn" onclick="submitWithdraw()">
+                    <i class="fas fa-shield-alt"></i> REQUEST WITHDRAW
+                </button>
+                
+                <div class="alert mt-3" style="background: rgba(0,100,255,0.1); border: 1px solid var(--cyber-blue);">
+                    <h6 style="color: var(--cyber-blue);">
+                        <i class="fas fa-info-circle"></i> SYARAT WITHDRAW:
+                    </h6>
+                    <ul class="mb-0 ps-3" style="color: var(--cyber-gold);">
+                        <li>Minimal WD: Rp 50.000</li>
+                        <li>Deposit minimal 1x untuk WD pertama</li>
+                        <li>Proses: 5-15 menit (jam aktif 08:00-24:00)</li>
+                        <li>Hanya ke rekening atas nama sendiri</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PROFILE SECTION -->
+        <section id="profileSection" class="section">
+            <div class="gold-box">
+                <h5 class="gold-text text-center mb-3">
+                    <i class="fas fa-user-circle"></i> PROFILE VIP
+                </h5>
+                
+                <!-- USER INFO -->
+                <div class="text-center mb-4">
+                    <div class="p-3 rounded" style="background: rgba(255,215,0,0.1); border: 2px solid var(--cyber-gold);">
+                        <i class="fas fa-crown fa-3x mb-2" style="color: var(--cyber-gold);"></i>
+                        <h4 id="profileUsername" style="color: var(--cyber-gold);">USERNAME</h4>
+                        <p id="profilePhone" class="mb-1" style="color: var(--cyber-blue);"></p>
+                        <p id="profileStatus" class="mb-0" style="color: var(--matrix-green);">
+                            <i class="fas fa-circle"></i> STATUS: AKTIF
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- USER STATS -->
+                <div class="admin-stats-grid" id="userStatsGrid">
+                    <!-- Stats will be loaded here -->
+                </div>
+                
+                <!-- USER ACTIONS -->
+                <div class="mt-4">
+                    <button class="gold-btn mb-2" onclick="showHistory()">
+                        <i class="fas fa-history"></i> RIWAYAT TRANSAKSI
+                    </button>
+                    
+                    <button class="gold-btn" onclick="changePassword()"
+                            style="background: linear-gradient(45deg, #0066CC, #00AAFF);">
+                        <i class="fas fa-key"></i> GANTI PASSWORD
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ADMIN SECTION -->
+        <section id="adminSection" class="section">
+            <div class="gold-box">
+                <div class="text-center mb-4">
+                    <h4 class="text-danger">
+                        <i class="fas fa-user-secret"></i> ADMIN DASHBOARD
+                    </h4>
+                    <small class="text-warning">Akses Terbatas • Mode Administrator</small>
+                </div>
+                
+                <!-- ADMIN STATS -->
+                <div class="admin-stats-grid" id="adminStatsGrid">
+                    <!-- Admin stats will be loaded here -->
+                </div>
+                
+                <!-- ADMIN ACTIONS -->
+                <h6 class="mt-4 mb-2" style="color: var(--cyber-gold);">
+                    <i class="fas fa-cogs"></i> QUICK ACTIONS
+                </h6>
+                
+                <div class="row g-2 mb-3" id="adminActionsGrid">
+                    <!-- Admin actions will be loaded here -->
+                </div>
+                
+                <!-- ADMIN TOOLS -->
+                <h6 class="mt-4 mb-2" style="color: var(--cyber-gold);">
+                    <i class="fas fa-tools"></i> USER MANAGEMENT
+                </h6>
+                
+                <div class="mb-3">
+                    <input type="text" id="adminUsername" 
+                           class="form-control-gold mb-2" 
+                           placeholder="Username">
+                    
+                    <input type="number" id="adminAmount" 
+                           class="form-control-gold mb-2" 
+                           placeholder="Jumlah Saldo">
+                    
+                    <div class="d-grid gap-2" id="adminToolsGrid">
+                        <!-- Admin tools will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="gold-nav">
+            <button class="nav-btn active" onclick="showSection('games')">
+                <i class="fas fa-gamepad nav-icon"></i>
+                <span>Games</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('deposit')">
+                <i class="fas fa-wallet nav-icon"></i>
+                <span>Deposit</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('withdraw')">
+                <i class="fas fa-money-bill-wave nav-icon"></i>
+                <span>Withdraw</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('profile')">
+                <i class="fas fa-user nav-icon"></i>
+                <span>Profile</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('admin')" style="display: none;" id="adminNavBtn">
+                <i class="fas fa-user-secret nav-icon"></i>
+                <span>Admin</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- TOOLTIP ELEMENT -->
+    <div class="tooltip" id="gameTooltip"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ============================
+        // GLOBAL VARIABLES & CONSTANTS
+        // ============================
+        let currentUser = null;
+        let users = JSON.parse(localStorage.getItem('goldSlotUsers')) || [];
+        let deposits = JSON.parse(localStorage.getItem('goldSlotDeposits')) || [];
+        let withdrawals = JSON.parse(localStorage.getItem('goldSlotWithdrawals')) || [];
+        let games = [];
+        let selectedAmount = 0;
+        
+        // Game Data - 100% Bug Free
+        const GAME_DATA = [
+            { id: 1, name: "SWEET BONANZA", rtp: 96.5, volatility: "HIGH", category: ["hot", "popular"], badge: "🔥" },
+            { id: 2, name: "GATES OF OLYMPUS", rtp: 96.5, volatility: "HIGH", category: ["hot", "vip"], badge: "👑" },
+            { id: 3, name: "STARLIGHT PRINCESS", rtp: 96.5, volatility: "MEDIUM", category: ["hot", "popular"], badge: "🔥" },
+            { id: 4, name: "AZTEC GEMS", rtp: 96.2, volatility: "LOW", category: ["vip"], badge: "👑" },
+            { id: 5, name: "5 LIONS MEGAWAYS", rtp: 96.5, volatility: "HIGH", category: ["vip", "high-rtp"], badge: "👑" },
+            { id: 6, name: "MAHJONG WAYS 2", rtp: 96.8, volatility: "MEDIUM", category: ["new", "high-rtp"], badge: "✨" },
+            { id: 7, name: "WILD WEST GOLD", rtp: 96.0, volatility: "HIGH", category: ["popular", "vip"], badge: "👑" },
+            { id: 8, name: "BUFFALO KING", rtp: 96.4, volatility: "HIGH", category: ["popular"], badge: "⭐" },
+            { id: 9, name: "BOOK OF DEAD", rtp: 96.2, volatility: "MEDIUM", category: ["vip", "popular"], badge: "👑" },
+            { id: 10, name: "GEMS BONANZA", rtp: 96.7, volatility: "MEDIUM", category: ["vip", "high-rtp"], badge: "👑" },
+            { id: 11, name: "GREAT RHINO", rtp: 96.5, volatility: "HIGH", category: ["popular"], badge: "⭐" },
+            { id: 12, name: "FRUIT PARTY", rtp: 96.5, volatility: "MEDIUM", category: ["hot", "popular"], badge: "🔥" },
+            { id: 13, name: "REACTOONZ", rtp: 96.1, volatility: "HIGH", category: ["new"], badge: "✨" },
+            { id: 14, name: "PIRATE GOLDEN AGE", rtp: 96.3, volatility: "MEDIUM", category: ["new", "vip"], badge: "✨" },
+            { id: 15, name: "DRAGON KINGDOM", rtp: 96.6, volatility: "HIGH", category: ["vip", "high-rtp"], badge: "👑" }
+        ];
+        
+        // Amount Options
+        const AMOUNT_OPTIONS = [50000, 70000, 100000, 200000, 500000, 1000000, 2000000, 5000000, 10000000];
+        
+        // ============================
+        // INITIALIZATION
+        // ============================
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            setupDefaultAdmin();
+            checkAutoLogin();
+        });
+        
+        function initializeApp() {
+            // Initialize games array
+            games = [...GAME_DATA];
+            
+            // Generate amount buttons
+            generateAmountButtons();
+            
+            // Generate user stats
+            generateUserStats();
+            
+            // Generate admin stats
+            generateAdminStats();
+            
+            // Load games
+            loadGames('all');
+            
+            // Setup time updates
+            updateTime();
+            setInterval(updateTime, 60000);
+            
+            // Setup battery updates
+            updateBattery();
+            setInterval(updateBattery, 300000);
+            
+            // Setup jackpot counter
+            startJackpotCounter();
+        }
+        
+        function setupEventListeners() {
+            // Game search
+            const gameSearch = document.getElementById('gameSearch');
+            gameSearch.addEventListener('input', debounce(function(e) {
+                searchGames(e.target.value);
+            }, 300));
+            
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    setActiveFilter(this);
+                    loadGames(filter);
+                });
+            });
+            
+            // Deposit amount input
+            document.getElementById('depositAmount').addEventListener('input', function(e) {
+                const amount = parseInt(e.target.value) || 0;
+                updateAmountButtons(amount);
+            });
+            
+            // File upload
+            document.getElementById('proofFile').addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    const fileName = this.files[0].name;
+                    showNotification(`File "${fileName}" siap diupload`, 'success');
+                }
+            });
+            
+            // Form validation
+            setupFormValidation();
+        }
+        
+        // ============================
+        // UTILITY FUNCTIONS
+        // ============================
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        function showLoading(show) {
+            const overlay = document.getElementById('loadingOverlay');
+            if (show) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }
+        
+        function showNotification(message, type = 'info') {
+            const colors = {
+                success: '#00FF00',
+                error: '#FF0000',
+                warning: '#FFA500',
+                info: '#00FFFF'
+            };
+            
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: rgba(26, 22, 0, 0.95);
+                border: 2px solid ${colors[type] || colors.info};
+                border-radius: 10px;
+                padding: 15px;
+                color: ${colors[type] || colors.info};
+                font-weight: bold;
+                z-index: 9999;
+                max-width: 300px;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function formatCurrency(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+        
+        function sanitizeInput(input) {
+            return input.trim().replace(/[<>]/g, '');
+        }
+        
+        // ============================
+        // TIME & BATTERY FUNCTIONS
+        // ============================
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.getHours().toString().padStart(2, '0') + ':' + 
+                           now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('currentTime').textContent = timeStr;
+        }
+        
+        function updateBattery() {
+            const levels = [100, 95, 90, 85, 80, 75];
+            const randomLevel = levels[Math.floor(Math.random() * levels.length)];
+            document.getElementById('batteryLevel').textContent = `${randomLevel}%`;
+        }
+        
+        function startJackpotCounter() {
+            const jackpotEl = document.getElementById('jackpotCounter');
+            let current = 2857890456;
+            
+            setInterval(() => {
+                current += Math.floor(Math.random() * 10000) + 1000;
+                jackpotEl.textContent = formatCurrency(current);
+                
+                // Pulse effect
+                jackpotEl.style.animation = 'none';
+                setTimeout(() => {
+                    jackpotEl.style.animation = 'pulseGold 2s infinite';
+                }, 10);
+            }, 3000);
+        }
+        
+        // ============================
+        // GAME LIST FUNCTIONS - 100% BUG FREE
+        // ============================
+        function loadGames(filter = 'all') {
+            showLoading(true);
+            
+            setTimeout(() => {
+                let filteredGames = games;
+                
+                if (filter !== 'all') {
+                    filteredGames = games.filter(game => 
+                        game.category.includes(filter)
+                    );
+                }
+                
+                renderGames(filteredGames);
+                showLoading(false);
+            }, 300);
+        }
+        
+        function searchGames(query) {
+            const searchTerm = query.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                loadGames('all');
+                return;
+            }
+            
+            const filteredGames = games.filter(game => 
+                game.name.toLowerCase().includes(searchTerm)
+            );
+            
+            renderGames(filteredGames);
+        }
+        
+        function renderGames(gamesArray) {
+            const gameGrid = document.getElementById('gameGrid');
+            const noGamesMessage = document.getElementById('noGamesMessage');
+            
+            if (gamesArray.length === 0) {
+                gameGrid.innerHTML = '';
+                noGamesMessage.style.display = 'block';
+                return;
+            }
+            
+            noGamesMessage.style.display = 'none';
+            
+            let html = '';
+            gamesArray.forEach(game => {
+                const badgeText = getBadgeText(game.badge, game.category);
+                const volatilityColor = getVolatilityColor(game.volatility);
+                
+                html += `
+                    <div class="game-card" onclick="selectGame(${game.id})" 
+                         data-game-id="${game.id}"
+                         data-game-name="${game.name}"
+                         onmouseenter="showGameTooltip(event, ${game.id})"
+                         onmouseleave="hideGameTooltip()">
+                        <div class="game-badge">${badgeText}</div>
+                        <div class="game-number">#${game.id}</div>
+                        <div class="game-image-container">
+                            <img src="game${game.id}.png" 
+                                 class="game-image" 
+                                 alt="${game.name}"
+                                 onerror="handleImageError(this, ${game.id})">
+                        </div>
+                        <div class="game-info">
+                            <div class="game-title">${game.name}</div>
+                            <div class="game-stats">
+                                <span class="game-rtp">RTP: ${game.rtp}%</span>
+                                <span class="game-volatility" style="color: ${volatilityColor}">
+                                    ${game.volatility}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            gameGrid.innerHTML = html;
+        }
+        
+        function getBadgeText(badge, categories) {
+            if (categories.includes('hot')) return '🔥 HOT';
+            if (categories.includes('new')) return '✨ NEW';
+            if (categories.includes('vip')) return '👑 VIP';
+            if (categories.includes('popular')) return '⭐ POPULAR';
+            return badge;
+        }
+        
+        function getVolatilityColor(volatility) {
+            switch(volatility.toLowerCase()) {
+                case 'high': return '#FF0000';
+                case 'medium': return '#FFA500';
+                case 'low': return '#00FF00';
+                default: return '#FFFFFF';
+            }
+        }
+        
+        function handleImageError(img, gameId) {
+            img.style.display = 'none';
+            const container = img.parentElement;
+            container.innerHTML = `
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--cyber-gold);">
+                    <i class="fas fa-gamepad" style="font-size: 30px; margin-bottom: 10px;"></i>
+                    <div style="font-size: 12px; text-align: center; padding: 0 10px;">GAME ${gameId}</div>
+                </div>
+            `;
+        }
+        
+        function setActiveFilter(activeBtn) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            activeBtn.classList.add('active');
+        }
+        
+        function showGameTooltip(event, gameId) {
+            const game = games.find(g => g.id === gameId);
+            if (!game) return;
+            
+            const tooltip = document.getElementById('gameTooltip');
+            tooltip.innerHTML = `
+                <strong>${game.name}</strong><br>
+                RTP: ${game.rtp}%<br>
+                Volatility: ${game.volatility}<br>
+                Category: ${game.category.join(', ')}
+            `;
+            
+            tooltip.style.left = (event.clientX + 10) + 'px';
+            tooltip.style.top = (event.clientY + 10) + 'px';
+            tooltip.classList.add('show');
+        }
+        
+        function hideGameTooltip() {
+            const tooltip = document.getElementById('gameTooltip');
+            tooltip.classList.remove('show');
+        }
+        
+        // ============================
+        // GAME SELECTION
+        // ============================
+        function selectGame(gameId) {
+            if (!currentUser) {
+                showNotification('Silakan login terlebih dahulu!', 'error');
+                return;
+            }
+            
+            if (currentUser.balance < 50000) {
+                showNotification('Saldo tidak cukup! Minimal Rp 50.000', 'warning');
+                showSection('deposit');
+                return;
+            }
+            
+            const game = games.find(g => g.id === gameId);
+            if (!game) return;
+            
+            // Simulate game loading
+            showLoading(true);
+            setTimeout(() => {
+                showLoading(false);
+                showNotification(`Deposit Dulu! ${game.name}...`, 'info');
+                // In real app, redirect to game URL
+            }, 1000);
+        }
+        
+        // ============================
+        // AMOUNT SELECTION FUNCTIONS
+        // ============================
+        function generateAmountButtons() {
+            const amountGrid = document.getElementById('amountGrid');
+            let html = '';
+            
+            AMOUNT_OPTIONS.forEach(amount => {
+                html += `
+                    <div class="amount-btn-gold" onclick="selectAmount(${amount}, this)">
+                        ${formatCurrency(amount)}
+                    </div>
+                `;
+            });
+            
+            amountGrid.innerHTML = html;
+        }
+        
+        function selectAmount(amount, element) {
+            selectedAmount = amount;
+            const depositInput = document.getElementById('depositAmount');
+            depositInput.value = amount;
+            
+            // Update UI
+            document.querySelectorAll('.amount-btn-gold').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            if (element) {
+                element.classList.add('selected');
+            }
+        }
+        
+        function updateAmountButtons(amount) {
+            document.querySelectorAll('.amount-btn-gold').forEach(btn => {
+                const btnAmount = parseInt(btn.textContent.replace(/[^0-9]/g, ''));
+                if (btnAmount === amount) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+        }
+        
+        // ============================
+        // AUTHENTICATION FUNCTIONS
+        // ============================
+        function showRegister() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('registerScreen').classList.remove('hidden');
+            clearErrors();
+        }
+        
+        function showLogin() {
+            document.getElementById('registerScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            clearErrors();
+        }
+        
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.textContent = '';
+                el.classList.remove('show');
+            });
+            document.querySelectorAll('.form-control-gold').forEach(el => {
+                el.classList.remove('error');
+            });
+        }
+        
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.classList.add('show');
+            }
+        }
+        
+        function validateUsername(username) {
+            if (!username) return 'Username tidak boleh kosong';
+            if (username.length < 3) return 'Username minimal 3 karakter';
+            if (username.length > 20) return 'Username maksimal 20 karakter';
+            if (!/^[a-zA-Z0-9_]+$/.test(username)) return 'Hanya huruf, angka, dan underscore';
+            return '';
+        }
+        
+        function validatePassword(password) {
+            if (!password) return 'Password tidak boleh kosong';
+            if (password.length < 6) return 'Password minimal 6 karakter';
+            return '';
+        }
+        
+        function validatePhone(phone) {
+            if (!phone) return 'Nomor WhatsApp tidak boleh kosong';
+            if (!/^08[0-9]{8,11}$/.test(phone)) return 'Format nomor WhatsApp tidak valid';
+            return '';
+        }
+        
+        async function register() {
+            clearErrors();
+            
+            const username = sanitizeInput(document.getElementById('regUsername').value);
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const phone = sanitizeInput(document.getElementById('regPhone').value);
+            
+            // Validations
+            const usernameError = validateUsername(username);
+            const passwordError = validatePassword(password);
+            const phoneError = validatePhone(phone);
+            
+            let hasError = false;
+            
+            if (usernameError) {
+                showError('regUserError', usernameError);
+                document.getElementById('regUsername').classList.add('error');
+                hasError = true;
+            }
+            
+            if (passwordError) {
+                showError('regPassError', passwordError);
+                document.getElementById('regPassword').classList.add('error');
+                hasError = true;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('regConfirmError', 'Password tidak cocok');
+                document.getElementById('regConfirmPassword').classList.add('error');
+                hasError = true;
+            }
+            
+            if (phoneError) {
+                showError('regPhoneError', phoneError);
+                document.getElementById('regPhone').classList.add('error');
+                hasError = true;
+            }
+            
+            // Check if username exists
+            if (users.find(u => u.username === username)) {
+                showError('regUserError', 'Username sudah terdaftar');
+                document.getElementById('regUsername').classList.add('error');
+                hasError = true;
+            }
+            
+            if (hasError) return;
+            
+            // Disable button during registration
+            const registerBtn = document.getElementById('registerBtn');
+            const originalText = registerBtn.innerHTML;
+            registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
+            registerBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Create new user
+                const newUser = {
+                    id: Date.now(),
+                    username: username,
+                    password: password, // In production, hash this!
+                    phone: phone,
+                    balance: 0,
+                    totalDeposit: 0,
+                    totalWithdraw: 0,
+                    totalBonus: 0,
+                    totalBet: 0,
+                    isAdmin: false,
+                    isActive: true,
+                    createdAt: new Date().toISOString(),
+                    lastLogin: null
+                };
+                
+                users.push(newUser);
+                saveUsers();
+                
+                showNotification('✅ Registrasi berhasil! Silakan login.', 'success');
+                
+                // Reset button
+                registerBtn.innerHTML = originalText;
+                registerBtn.disabled = false;
+                
+                showLogin();
+                
+                // Clear form
+                document.getElementById('regUsername').value = '';
+                document.getElementById('regPassword').value = '';
+                document.getElementById('regConfirmPassword').value = '';
+                document.getElementById('regPhone').value = '';
+            }, 1000);
+        }
+        
+        async function login() {
+            clearErrors();
+            
+            const username = sanitizeInput(document.getElementById('loginUsername').value);
+            const password = document.getElementById('loginPassword').value;
+            
+            // Validations
+            if (!username) {
+                showError('loginUserError', 'Username tidak boleh kosong');
+                document.getElementById('loginUsername').classList.add('error');
+                return;
+            }
+            
+            if (!password) {
+                showError('loginPassError', 'Password tidak boleh kosong');
+                document.getElementById('loginPassword').classList.add('error');
+                return;
+            }
+            
+            // Disable button during login
+            const loginBtn = document.getElementById('loginBtn');
+            const originalText = loginBtn.innerHTML;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> LOGGING IN...';
+            loginBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Find user
+                const user = users.find(u => u.username === username && u.password === password);
+                
+                if (!user) {
+                    showError('loginPassError', 'Username atau password salah');
+                    document.getElementById('loginUsername').classList.add('error');
+                    document.getElementById('loginPassword').classList.add('error');
+                    
+                    // Reset button
+                    loginBtn.innerHTML = originalText;
+                    loginBtn.disabled = false;
+                    return;
+                }
+                
+                if (!user.isActive) {
+                    showNotification('❌ Akun anda dinonaktifkan. Hubungi admin.', 'error');
+                    
+                    // Reset button
+                    loginBtn.innerHTML = originalText;
+                    loginBtn.disabled = false;
+                    return;
+                }
+                
+                // Login successful
+                currentUser = user;
+                user.lastLogin = new Date().toISOString();
+                saveUsers();
+                
+                // Hide auth screens, show main app
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('registerScreen').classList.add('hidden');
+                document.getElementById('mainApp').classList.add('active');
+                
+                // Update UI
+                updateUI();
+                
+                showNotification(`🎉 Welcome back, ${user.username}!`, 'success');
+                
+                // Reset button
+                loginBtn.innerHTML = originalText;
+                loginBtn.disabled = false;
+                
+                // Save session
+                localStorage.setItem('currentSession', JSON.stringify({ userId: user.id }));
+            }, 1000);
+        }
+        
+        function logout() {
+            if (confirm('Yakin ingin logout?')) {
+                currentUser = null;
+                localStorage.removeItem('currentSession');
+                document.getElementById('mainApp').classList.remove('active');
+                document.getElementById('loginScreen').classList.remove('hidden');
+                
+                // Clear login form
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+                clearErrors();
+                
+                showNotification('Logout berhasil!', 'info');
+            }
+        }
+        
+        // ============================
+        // UI UPDATE FUNCTIONS
+        // ============================
+        function updateUI() {
+            if (!currentUser) return;
+            
+            // Update user info
+            document.getElementById('userGreeting').textContent = `Welcome, ${currentUser.username}`;
+            document.getElementById('userBalance').innerHTML = 
+                `<i class="fas fa-coins"></i> Balance: ${formatCurrency(currentUser.balance)}`;
+            document.getElementById('availableBalance').textContent = formatCurrency(currentUser.balance);
+            
+            // Profile section
+            document.getElementById('profileUsername').textContent = currentUser.username;
+            document.getElementById('profilePhone').textContent = currentUser.phone || '-';
+            document.getElementById('profileStatus').innerHTML = 
+                `<i class="fas fa-circle"></i> STATUS: ${currentUser.isActive ? 'AKTIF' : 'NONAKTIF'}`;
+            
+            // Update user stats
+            updateUserStats();
+            
+            // Show/hide admin features
+            const adminBtn = document.getElementById('adminAccessBtn');
+            const adminNav = document.getElementById('adminNavBtn');
+            
+            if (currentUser.isAdmin) {
+                adminBtn.style.display = 'block';
+                adminNav.style.display = 'flex';
+                updateAdminDashboard();
+            } else {
+                adminBtn.style.display = 'none';
+                adminNav.style.display = 'none';
+            }
+        }
+        
+        function generateUserStats() {
+            const statsGrid = document.getElementById('userStatsGrid');
+            const stats = [
+                { label: 'TOTAL DEPOSIT', value: 'totalDeposit', color: '#00FFFF' },
+                { label: 'TOTAL WD', value: 'totalWithdraw', color: '#00FF00' },
+                { label: 'BONUS', value: 'totalBonus', color: '#FFD700' },
+                { label: 'TOTAL BET', value: 'totalBet', color: '#FF0055' }
+            ];
+            
+            let html = '';
+            stats.forEach(stat => {
+                html += `
+                    <div class="stat-box-gold">
+                        <small style="color: ${stat.color};">${stat.label}</small>
+                        <h5 id="userStat_${stat.value}">Rp 0</h5>
+                    </div>
+                `;
+            });
+            
+            statsGrid.innerHTML = html;
+        }
+        
+        function updateUserStats() {
+            if (!currentUser) return;
+            
+            document.getElementById('userStat_totalDeposit').textContent = formatCurrency(currentUser.totalDeposit);
+            document.getElementById('userStat_totalWithdraw').textContent = formatCurrency(currentUser.totalWithdraw);
+            document.getElementById('userStat_totalBonus').textContent = formatCurrency(currentUser.totalBonus);
+            document.getElementById('userStat_totalBet').textContent = formatCurrency(currentUser.totalBet);
+        }
+        
+        function generateAdminStats() {
+            const statsGrid = document.getElementById('adminStatsGrid');
+            const stats = [
+                { id: 'adminTotalUsers', label: 'TOTAL USERS', color: '#00FFFF' },
+                { id: 'adminTotalDeposit', label: 'TOTAL DEPOSIT', color: '#00FF00' },
+                { id: 'adminPendingDeposit', label: 'PENDING DEPOSIT', color: '#FFA500' },
+                { id: 'adminActiveUsers', label: 'ACTIVE USERS', color: '#FFD700' }
+            ];
+            
+            let html = '';
+            stats.forEach(stat => {
+                html += `
+                    <div class="stat-box-gold">
+                        <small style="color: ${stat.color};">${stat.label}</small>
+                        <h5 id="${stat.id}">0</h5>
+                    </div>
+                `;
+            });
+            
+            statsGrid.innerHTML = html;
+            
+            // Generate admin actions
+            generateAdminActions();
+            generateAdminTools();
+        }
+        
+        function generateAdminActions() {
+            const actionsGrid = document.getElementById('adminActionsGrid');
+            const actions = [
+                { id: 'adminViewUsers', label: 'Users', icon: 'users', color: 'linear-gradient(45deg, #0066CC, #00AAFF)' },
+                { id: 'adminViewDeposits', label: 'Deposits', icon: 'money-check-alt', color: 'linear-gradient(45deg, #008800, #00CC00)' },
+                { id: 'adminViewWithdrawals', label: 'Withdrawals', icon: 'exchange-alt', color: 'linear-gradient(45deg, #9900CC, #CC00FF)' },
+                { id: 'adminViewLogs', label: 'Logs', icon: 'file-alt', color: 'linear-gradient(45deg, #CC9900, #FFCC00)' }
+            ];
+            
+            let html = '';
+            actions.forEach(action => {
+                html += `
+                    <div class="col-6">
+                        <button class="gold-btn" onclick="${action.id}()"
+                                style="background: ${action.color}; padding: 10px;">
+                            <i class="fas fa-${action.icon}"></i> ${action.label}
+                        </button>
+                    </div>
+                `;
+            });
+            
+            actionsGrid.innerHTML = html;
+        }
+        
+        function generateAdminTools() {
+            const toolsGrid = document.getElementById('adminToolsGrid');
+            const tools = [
+                { id: 'adminAddBalance', label: 'TAMBAH SALDO', icon: 'plus-circle', color: '' },
+                { id: 'adminResetUser', label: 'RESET USER', icon: 'trash', color: 'linear-gradient(45deg, #8B0000, #FF0000)' },
+                { id: 'adminBanUser', label: 'BAN USER', icon: 'ban', color: 'linear-gradient(45deg, #660000, #990000)' }
+            ];
+            
+            let html = '';
+            tools.forEach(tool => {
+                const style = tool.color ? `style="background: ${tool.color};"` : '';
+                html += `
+                    <button class="gold-btn" onclick="${tool.id}()" ${style}>
+                        <i class="fas fa-${tool.icon}"></i> ${tool.label}
+                    </button>
+                `;
+            });
+            
+            toolsGrid.innerHTML = html;
+        }
+        
+        function updateAdminDashboard() {
+            if (!currentUser || !currentUser.isAdmin) return;
+            
+            const totalUsers = users.length;
+            const activeUsers = users.filter(u => u.isActive).length;
+            const totalDeposit = users.reduce((sum, u) => sum + u.totalDeposit, 0);
+            const pendingDeposits = deposits.filter(d => d.status === 'pending').length;
+            
+            document.getElementById('adminTotalUsers').textContent = totalUsers;
+            document.getElementById('adminActiveUsers').textContent = activeUsers;
+            document.getElementById('adminTotalDeposit').textContent = formatCurrency(totalDeposit);
+            document.getElementById('adminPendingDeposit').textContent = pendingDeposits;
+        }
+        
+        // ============================
+        // SECTION MANAGEMENT
+        // ============================
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId + 'Section').classList.add('active');
+            
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const navBtn = document.querySelector(`.nav-btn[onclick*="${sectionId}"]`);
+            if (navBtn) {
+                navBtn.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update data if needed
+            if (sectionId === 'profile') {
+                updateUserStats();
+            } else if (sectionId === 'admin' && currentUser?.isAdmin) {
+                updateAdminDashboard();
+            }
+        }
+        
+        function accessAdmin() {
+            if (!currentUser || !currentUser.isAdmin) {
+                const password = prompt('Admin Password:');
+                if (password === 'admin123') {
+                    currentUser.isAdmin = true;
+                    saveUsers();
+                    updateUI();
+                    showSection('admin');
+                } else {
+                    showNotification('❌ ACCESS DENIED!', 'error');
+                }
+            } else {
+                showSection('admin');
+            }
+        }
+        
+        // ============================
+        // DEPOSIT & WITHDRAW FUNCTIONS
+        // ============================
+        function setupFormValidation() {
+            // Deposit form validation
+            const depositAmount = document.getElementById('depositAmount');
+            const playerName = document.getElementById('playerName');
+            const wdAmount = document.getElementById('wdAmount');
+            const wdNumber = document.getElementById('wdNumber');
+            
+            depositAmount.addEventListener('blur', function() {
+                const amount = parseInt(this.value) || 0;
+                if (amount < 50000 && amount > 0) {
+                    showNotification('Minimal deposit Rp 50.000', 'warning');
+                }
+            });
+            
+            wdAmount.addEventListener('blur', function() {
+                const amount = parseInt(this.value) || 0;
+                if (amount < 50000 && amount > 0) {
+                    showNotification('Minimal withdraw Rp 50.000', 'warning');
+                }
+            });
+            
+            wdNumber.addEventListener('blur', function() {
+                const number = this.value.trim();
+                if (number && !/^08[0-9]{8,11}$/.test(number)) {
+                    showNotification('Format nomor Dana tidak valid', 'warning');
+                }
+            });
+        }
+        
+        async function submitDeposit() {
+            if (!currentUser) {
+                showNotification('Silakan login terlebih dahulu!', 'error');
+                return;
+            }
+            
+            const amount = parseInt(document.getElementById('depositAmount').value);
+            const playerName = sanitizeInput(document.getElementById('playerName').value);
+            
+            // Validations
+            if (!amount || amount < 50000) {
+                showNotification('Minimal deposit Rp 50.000!', 'error');
+                return;
+            }
+            
+            if (!playerName) {
+                showNotification('Masukkan nama akun Anda!', 'error');
+                return;
+            }
+            
+            if (playerName !== currentUser.username) {
+                showNotification('Nama akun harus sama dengan username login!', 'warning');
+                return;
+            }
+            
+            // Disable button
+            const depositBtn = document.getElementById('submitDepositBtn');
+            const originalText = depositBtn.innerHTML;
+            depositBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
+            depositBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Create deposit record
+                const deposit = {
+                    id: Date.now(),
+                    userId: currentUser.id,
+                    username: currentUser.username,
+                    amount: amount,
+                    status: 'pending',
+                    createdAt: new Date().toISOString(),
+                    proofImage: null
+                };
+                
+                deposits.push(deposit);
+                saveDeposits();
+                
+                showNotification(`✅ Deposit ${formatCurrency(amount)} berhasil diajukan!`, 'success');
+                
+                // Reset form
+                document.getElementById('depositAmount').value = '';
+                document.getElementById('playerName').value = '';
+                selectedAmount = 0;
+                document.querySelectorAll('.amount-btn-gold').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                
+                // Reset button
+                depositBtn.innerHTML = originalText;
+                depositBtn.disabled = false;
+                
+                // Update admin dashboard if admin
+                if (currentUser.isAdmin) {
+                    updateAdminDashboard();
+                }
+            }, 1000);
+        }
+        
+        async function submitWithdraw() {
+            if (!currentUser) {
+                showNotification('Silakan login terlebih dahulu!', 'error');
+                return;
+            }
+            
+            const amount = parseInt(document.getElementById('wdAmount').value);
+            const danaNumber = sanitizeInput(document.getElementById('wdNumber').value);
+            const password = document.getElementById('wdPassword').value;
+            
+            // Validations
+            if (!amount || amount < 50000) {
+                showNotification('Minimal withdraw Rp 50.000!', 'error');
+                return;
+            }
+            
+            if (currentUser.balance < amount) {
+                showNotification('Saldo tidak mencukupi!', 'error');
+                return;
+            }
+            
+            if (!danaNumber || !/^08[0-9]{8,11}$/.test(danaNumber)) {
+                showNotification('Masukkan nomor Dana yang valid!', 'error');
+                return;
+            }
+            
+            if (password !== currentUser.password) {
+                showNotification('Password salah!', 'error');
+                return;
+            }
+            
+            // Check if user has made deposit
+            const userDeposits = deposits.filter(d => 
+                d.userId === currentUser.id && d.status === 'approved'
+            );
+            
+            if (userDeposits.length === 0) {
+                showNotification('Anda harus melakukan deposit minimal 1x sebelum withdraw!', 'warning');
+                showSection('deposit');
+                return;
+            }
+            
+            // Disable button
+            const withdrawBtn = document.getElementById('submitWithdrawBtn');
+            const originalText = withdrawBtn.innerHTML;
+            withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
+            withdrawBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Create withdrawal record
+                const withdrawal = {
+                    id: Date.now(),
+                    userId: currentUser.id,
+                    username: currentUser.username,
+                    amount: amount,
+                    danaNumber: danaNumber,
+                    status: 'pending',
+                    createdAt: new Date().toISOString()
+                };
+                
+                withdrawals.push(withdrawal);
+                saveWithdrawals();
+                
+                // Deduct from balance
+                currentUser.balance -= amount;
+                currentUser.totalWithdraw += amount;
+                saveUsers();
+                
+                showNotification(`✅ Withdraw ${formatCurrency(amount)} berhasil diajukan!`, 'success');
+                
+                // Reset form
+                document.getElementById('wdAmount').value = '';
+                document.getElementById('wdNumber').value = '';
+                document.getElementById('wdPassword').value = '';
+                
+                // Reset button
+                withdrawBtn.innerHTML = originalText;
+                withdrawBtn.disabled = false;
+                
+                // Update UI
+                updateUI();
+            }, 1000);
+        }
+        
+        // ============================
+        // ADMIN FUNCTIONS
+        // ============================
+        function adminViewUsers() {
+            let message = '👥 DAFTAR USER:\n\n';
+            users.forEach((user, idx) => {
+                message += `${idx+1}. ${user.username} (${user.phone})\n`;
+                message += `   Saldo: ${formatCurrency(user.balance)}\n`;
+                message += `   Status: ${user.isActive ? '✅ AKTIF' : '❌ NONAKTIF'}\n`;
+                message += `   Admin: ${user.isAdmin ? '👑 YA' : '❌ TIDAK'}\n\n`;
+            });
+            
+            alert(message);
+        }
+        
+        function adminViewDeposits() {
+            let message = '💰 DEPOSIT PENDING:\n\n';
+            let hasPending = false;
+            
+            deposits.forEach((dep, idx) => {
+                if (dep.status === 'pending') {
+                    hasPending = true;
+                    message += `${idx+1}. ${dep.username}\n`;
+                    message += `   ${formatCurrency(dep.amount)}\n`;
+                    message += `   ${new Date(dep.createdAt).toLocaleTimeString()}\n\n`;
+                }
+            });
+            
+            if (!hasPending) {
+                message += 'Tidak ada deposit pending.';
+            }
+            
+            alert(message);
+        }
+        
+        function adminAddBalance() {
+            const username = sanitizeInput(document.getElementById('adminUsername').value);
+            const amount = parseInt(document.getElementById('adminAmount').value);
+            
+            if (!username) {
+                showNotification('Masukkan username!', 'error');
+                return;
+            }
+            
+            if (!amount || amount <= 0) {
+                showNotification('Masukkan jumlah yang valid!', 'error');
+                return;
+            }
+            
+            const user = users.find(u => u.username === username);
+            if (user) {
+                user.balance += amount;
+                saveUsers();
+                
+                showNotification(`✅ Saldo ${username} ditambah ${formatCurrency(amount)}`, 'success');
+                
+                // Reset form
+                document.getElementById('adminUsername').value = '';
+                document.getElementById('adminAmount').value = '';
+                
+                // Update dashboard
+                updateAdminDashboard();
+            } else {
+                showNotification('❌ User tidak ditemukan!', 'error');
+            }
+        }
+        
+        function adminResetUser() {
+            const username = sanitizeInput(document.getElementById('adminUsername').value);
+            
+            if (!username) {
+                showNotification('Masukkan username!', 'error');
+                return;
+            }
+            
+            const user = users.find(u => u.username === username);
+            if (user) {
+                if (confirm(`Reset user ${username}? Saldo akan menjadi 0.`)) {
+                    user.balance = 0;
+                    user.totalDeposit = 0;
+                    user.totalWithdraw = 0;
+                    user.totalBonus = 0;
+                    user.totalBet = 0;
+                    saveUsers();
+                    showNotification(`✅ User ${username} telah direset.`, 'success');
+                    updateAdminDashboard();
+                }
+            } else {
+                showNotification('❌ User tidak ditemukan!', 'error');
+            }
+        }
+        
+        // ============================
+        // STORAGE FUNCTIONS
+        // ============================
+        function saveUsers() {
+            localStorage.setItem('goldSlotUsers', JSON.stringify(users));
+        }
+        
+        function saveDeposits() {
+            localStorage.setItem('goldSlotDeposits', JSON.stringify(deposits));
+        }
+        
+        function saveWithdrawals() {
+            localStorage.setItem('goldSlotWithdrawals', JSON.stringify(withdrawals));
+        }
+        
+        // ============================
+        // SETUP DEFAULT ADMIN
+        // ============================
+        function setupDefaultAdmin() {
+            const adminExists = users.find(u => u.username === 'admin');
+            if (!adminExists) {
+                users.push({
+                    id: 1,
+                    username: 'admin',
+                    password: 'admin123',
+                    phone: '081234567890',
+                    balance: 1000000000,
+                    totalDeposit: 0,
+                    totalWithdraw: 0,
+                    totalBonus: 0,
+                    totalBet: 0,
+                    isAdmin: true,
+                    isActive: true,
+                    createdAt: new Date().toISOString(),
+                    lastLogin: null
+                });
+                saveUsers();
+            }
+        }
+        
+        // ============================
+        // AUTO LOGIN
+        // ============================
+        function checkAutoLogin() {
+            try {
+                const session = localStorage.getItem('currentSession');
+                if (session) {
+                    const { userId } = JSON.parse(session);
+                    const user = users.find(u => u.id === userId);
+                    if (user && user.isActive) {
+                        currentUser = user;
+                        document.getElementById('loginScreen').classList.add('hidden');
+                        document.getElementById('mainApp').classList.add('active');
+                        updateUI();
+                        showNotification(`Welcome back, ${user.username}!`, 'success');
+                    }
+                }
+            } catch (e) {
+                localStorage.removeItem('currentSession');
+            }
+        }
+        
+        // ============================
+        // WINDOW EVENT LISTENERS
+        // ============================
+        window.addEventListener('beforeunload', function() {
+            if (currentUser) {
+                localStorage.setItem('currentSession', JSON.stringify({ userId: currentUser.id }));
+            }
+        });
+        
+        // Add CSS for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+            
+            .amount-grid-gold {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin: 20px 0;
+            }
+            
+            .amount-btn-gold {
+                background: rgba(255, 215, 0, 0.1);
+                border: 2px solid var(--cyber-gold);
+                border-radius: 12px;
+                padding: 15px 5px;
+                color: var(--cyber-gold);
+                font-weight: bold;
+                text-align: center;
+                transition: all 0.3s;
+                font-size: 14px;
+                cursor: pointer;
+            }
+            
+            .amount-btn-gold.selected {
+                background: linear-gradient(45deg, var(--cyber-red), var(--cyber-purple));
+                color: white;
+                border-color: var(--cyber-red);
+                transform: scale(1.08);
+                box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+            }
+            
+            .admin-stats-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin: 20px 0;
+            }
+            
+            .stat-box-gold {
+                background: rgba(255, 215, 0, 0.15);
+                border: 2px solid var(--cyber-gold);
+                border-radius: 15px;
+                padding: 15px;
+                text-align: center;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
